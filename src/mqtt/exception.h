@@ -71,8 +71,8 @@ public:
 	 * @param msg The text message for the error.
 	 */
 	exception(int rc, const string& msg)
-		: std::runtime_error(printable_error(rc, ReasonCode::SUCCESS, msg)),
-			rc_(rc), reasonCode_(ReasonCode::SUCCESS), msg_(msg) {}
+		: std::runtime_error(printable_error(rc, ReasonCode::MQTT_SUCCESS, msg)),
+			rc_(rc), reasonCode_(ReasonCode::MQTT_SUCCESS), msg_(msg) {}
 	/**
 	 * Creates an MQTT exception.
 	 * @param rc The error return code from the C library.
@@ -111,12 +111,12 @@ public:
 	 * @return A string error message that includes the error code and an
 	 *  	   explanation message.
 	 */
-	static string printable_error(int rc, int reasonCode=ReasonCode::SUCCESS,
+	static string printable_error(int rc, int reasonCode=ReasonCode::MQTT_SUCCESS,
 								  const string& msg=string()) {
 		string s = "MQTT error [" + std::to_string(rc) + "]";
 		if (!msg.empty())
 			s += string(": ") + msg;
-		if (reasonCode != MQTTPP_V3_CODE && reasonCode != ReasonCode::SUCCESS)
+		if (reasonCode != MQTTPP_V3_CODE && reasonCode != ReasonCode::MQTT_SUCCESS)
 			s += string(". Reason: ") + reason_code_str(reasonCode);
 		return s;
 	}

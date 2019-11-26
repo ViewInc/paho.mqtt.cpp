@@ -55,7 +55,7 @@ using binary_ptr = std::shared_ptr<const binary>;
  * These map to the Paho C MQTTReasonCodes
  */
 enum ReasonCode {
-    SUCCESS = 0,
+    MQTT_SUCCESS = 0,
     NORMAL_DISCONNECTION = 0,
     GRANTED_QOS_0 = 0,
     GRANTED_QOS_1 = 1,
@@ -172,8 +172,8 @@ inline int to_int(bool b) { return b ? (!0) : 0; }
  * @return A string copy of the C array. If `cstr` is NULL, this returns an
  *  	   empty string.
  */
-inline string to_string(const char* cstr) {
-	return cstr ? string(cstr) : string();
+inline std::string to_string(const char* cstr) {
+	return cstr ? std::string(cstr) : std::string();
 }
 
 /////////////////////////////////////////////////////////////////////////////

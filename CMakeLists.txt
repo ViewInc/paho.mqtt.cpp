@@ -40,8 +40,8 @@ if(WIN32)
   option(PAHO_BUILD_SHARED "Build shared library (DLL)" FALSE)
   option(PAHO_WITH_SSL "Build SSL-enabled library" FALSE)
 else()
-  option(PAHO_BUILD_STATIC "Build static library" FALSE)
-  option(PAHO_BUILD_SHARED "Build shared library" TRUE)
+  option(PAHO_BUILD_STATIC "Build static library" TRUE)
+  option(PAHO_BUILD_SHARED "Build shared library" FALSE)
   option(PAHO_WITH_SSL "Build SSL-enabled library" TRUE)
 endif()
 
@@ -72,6 +72,7 @@ endif()
 ## --- Build directories ---
 
 # For the paho_mqtt_c module
+list(APPEND CMAKE_PREFIX_PATH ${PROJECT_SOURCE_DIR}/paho.mqtt.c)
 list(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
 add_subdirectory(src)
 

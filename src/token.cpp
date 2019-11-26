@@ -50,7 +50,7 @@ namespace mqtt {
 // Constructors
 
 token::token(Type typ, iasync_client& cli, const_string_collection_ptr topics)
-				: type_(typ), cli_(&cli), rc_(0), reasonCode_(ReasonCode::SUCCESS),
+				: type_(typ), cli_(&cli), rc_(0), reasonCode_(ReasonCode::MQTT_SUCCESS),
 						msgId_(MQTTAsync_token(0)), topics_(topics),
 						userContext_(nullptr), listener_(nullptr), nExpected_(0),
 						complete_(false)
@@ -59,7 +59,7 @@ token::token(Type typ, iasync_client& cli, const_string_collection_ptr topics)
 
 token::token(Type typ, iasync_client& cli, const_string_collection_ptr topics,
 			 void* userContext, iaction_listener& cb)
-				: type_(typ), cli_(&cli), rc_(0), reasonCode_(ReasonCode::SUCCESS),
+				: type_(typ), cli_(&cli), rc_(0), reasonCode_(ReasonCode::MQTT_SUCCESS),
 						msgId_(MQTTAsync_token(0)), topics_(topics),
 						userContext_(userContext), listener_(&cb), nExpected_(0),
 						complete_(false)
@@ -67,7 +67,7 @@ token::token(Type typ, iasync_client& cli, const_string_collection_ptr topics,
 }
 
 token::token(Type typ, iasync_client& cli, MQTTAsync_token tok)
-				: type_(typ), cli_(&cli), rc_(0), reasonCode_(ReasonCode::SUCCESS),
+				: type_(typ), cli_(&cli), rc_(0), reasonCode_(ReasonCode::MQTT_SUCCESS),
 					msgId_(tok), userContext_(nullptr),
 					listener_(nullptr), nExpected_(0), complete_(false)
 {
@@ -264,7 +264,7 @@ void token::reset()
 	guard g(lock_);
 	complete_ = false;
 	rc_ = MQTTASYNC_SUCCESS;
-	reasonCode_ = ReasonCode::SUCCESS;
+	reasonCode_ = ReasonCode::MQTT_SUCCESS;
 	errMsg_.clear();
 }
 
